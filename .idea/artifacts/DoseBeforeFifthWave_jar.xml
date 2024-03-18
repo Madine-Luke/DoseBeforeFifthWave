@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DoseBeforeFifthWave:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DoseBeforeFifthWave_jar</output-path>
+    <root id="archive" name="DoseBeforeFifthWave.jar">
+      <element id="module-output" name="DoseBeforeFifthWave" />
+    </root>
+  </artifact>
+</component>
