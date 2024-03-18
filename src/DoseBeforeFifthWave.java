@@ -57,18 +57,12 @@ public class DoseBeforeFifthWave {
     public static class DoseBeforeFifthWaveReducer extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             String ageGroup = key.toString();
-            StringTokenizer bio6 = new StringTokenizer("");
             int[] doses = new int[12];
             String out = "";
             for (Text val : values) {
                 String[] data = val.toString().split(",");
                 for (int i = 1; i < data.length; i++) {
-                    if (i == data.length - 1) {
-                        bio6 = new StringTokenizer(data[i]);
-                        doses[i - 1] = Integer.parseInt(bio6.nextToken());
-                    } else {
-                        doses[i - 1] += Integer.parseInt(data[i]);
-                    }
+                    doses[i - 1] += Integer.parseInt(data[i].trim());
                 }
             }
 
@@ -78,7 +72,7 @@ public class DoseBeforeFifthWave {
 
             String kvString = ageGroup + out;
 
-            if(ageGroup.compareTo("") != 0){
+            if (ageGroup.compareTo("") != 0) {
                 context.write(new Text(kvString), new Text());
             }
 
